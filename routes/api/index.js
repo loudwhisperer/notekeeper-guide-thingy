@@ -1,8 +1,9 @@
+//plug ins
 const route = require("express").Router();
 const fs = require("fs");
 const { writeFile, readFile } = fs.promises;
 const { v4: uuidv4 } = require("uuid");
-
+//routes
 route.get("/notes", async (req, res) => {
   const db = await readFile("db/db.json");
   res.send(db);
@@ -17,5 +18,5 @@ route.post("/notes", async (req, res) => {
   const newDb = await writeFile("db/db.json", JSON.stringify(parsedNotes));
   res.json(newDb) 
 });
-
+//export file
 module.exports = route;
